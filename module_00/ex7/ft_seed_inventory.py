@@ -6,10 +6,12 @@ def ft_seed_inventory(seed_type: str, quantity: int, unit: str) -> None:
     }
     ext = "available"
     type = dic["name"].capitalize()
+    qtd = dic["qtd"]
+    pack = dic["pack"]
+    if dic["pack"] == "grams":
+        ext = "total"
     if dic["pack"] == "area":
         ext = "meters"
-        print(f"{type} seed: covers {dic["qtd"]} square {ext}")
-        return
-    elif dic["pack"] == "grams":
-        ext = "total"
-    print(f"{type} seed: {dic["qtd"]} {dic["pack"]} {ext}")
+        print(f"{type} seed: covers {qtd} square {ext}")
+    else:
+        print(f"{type} seed: {qtd} {pack} {ext}")
