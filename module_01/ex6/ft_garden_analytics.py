@@ -2,7 +2,7 @@ class Plant():
     list = []
 
     def __init__(self, name: str, height: int) -> None:
-        self.name = name.capitalize()
+        self.name = name.title()
         self.height = self.set_height(height)
         Plant.list.append(self)
 
@@ -59,7 +59,7 @@ class Garden():
 
     def add_plant(self, plant: Plant) -> str:
         self.plants.append(plant)
-        print(f"Added {plant.name} to {self.owner}'s garden")
+        return f"Added {plant.name} to {self.owner}'s garden"
 
     def grow_plants(self, cm_to_grow: int) -> None:
         print(f"{self.owner} is helping all plants grow...")
@@ -164,10 +164,10 @@ def main() -> None:
     manager.create_garden_network(alice)
     manager.create_garden_network(bob)
 
-    print("=== Garden Management System Demo ===")
-    alice.add_plant(oak)
-    alice.add_plant(rose)
-    alice.add_plant(sunflower)
+    print("=== Garden Management System Demo ===\n")
+    print(alice.add_plant(oak))
+    print(alice.add_plant(rose))
+    print(alice.add_plant(sunflower))
     print()
     alice.grow_plants(1)
     print()
