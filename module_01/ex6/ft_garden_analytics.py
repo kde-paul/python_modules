@@ -106,7 +106,7 @@ class GardenManager:
 Total growth: {total_grow}cm"
 
         @staticmethod
-        def plants_types(garden: Garden, plant_type) -> int:
+        def plants_types(garden: Garden, plant_type: type[Plant]) -> int:
             counter = 0
             for plant in garden.plants:
                 if plant.__class__ is plant_type:
