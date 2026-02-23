@@ -2,7 +2,7 @@ def water_plants(plant_list: list) -> None:
     print("Opening watering system")
     try:
         for plant in plant_list:
-            if not plant == None:
+            if plant is not None:
                 print(f"Watering {plant}")
             else:
                 raise ValueError
@@ -24,6 +24,7 @@ def test_watering_system() -> None:
     print("Testing with error...")
     water_plants(wrong_lst)
     print("\nCleanup always happens, even with errors!")
+
 
 if __name__ == "__main__":
     test_watering_system()

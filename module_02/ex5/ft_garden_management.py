@@ -5,12 +5,13 @@ class GardenError(Exception):
     def __str__(self) -> str:
         return f"{self.message}"
 
+
 class PlantError(GardenError):
     def __init__(self) -> None:
         pass
 
     def __str__(self) -> str:
-        return f"Plant name cannot be empty!"
+        return "Plant name cannot be empty!"
 
 
 class WaterError(GardenError):
@@ -46,7 +47,7 @@ class GardenManager:
     def __init__(self):
         self.plant_lst = []
         self.__water = 0
-    
+
     def add_plant(self, name: str) -> None:
         try:
             if name == "":
@@ -56,7 +57,7 @@ class GardenManager:
                 print(f"Added {name} successfully")
         except GardenError as error:
             print("Error adding plant:", error)
-    
+
     def water_plants(self, water: int) -> None:
         print("Opening watering system")
         try:
@@ -71,11 +72,11 @@ class GardenManager:
             err = True
             print("Error watering plants:", error)
         finally:
-            if err == True:
+            if err is True:
                 print("Closing watering system (warning)")
             else:
                 print("Closing watering system (cleanup)")
-    
+
     def plant_health(self) -> None:
         try:
             for plant in self.plant_lst:
@@ -84,14 +85,17 @@ class GardenManager:
                 elif plant.water < 1 or plant.water > 10:
                     raise WaterError(plant.water)
                 else:
-                    print(f"{plant.name}: healthy (water: {plant.water}, sun: {plant.sun})")
+                    print(f"{plant.name}: healthy \
+                          (water: {plant.water}, sun: {plant.sun})")
         except Exception as error:
             print(f"Error checking {plant.name}:", error)
-    
+
     def fill_tank(self, water: int) -> None:
         try:
             if water + self.__water > 150:
-                raise ValueError(f"There already are {self.__water} water in tank and more {water} water will overflow the tank")
+                raise ValueError(f"There already are {self.__water} \
+                                 water in tank and more {water} \
+                                    water will overflow the tank")
             else:
                 self.__water += water
             if self.__water < 11:
@@ -99,7 +103,8 @@ class GardenManager:
         except Exception as error:
             print("Caught GardenError:", error)
         finally:
-            print(f"System recovered and continuing...")
+            print("System recovered and continuing...")
+
 
 def test_garden_management() -> None:
     manager = GardenManager()
@@ -122,6 +127,7 @@ def test_garden_management() -> None:
     manager.fill_tank(9)
 
     print("\nGarden management system test complete!")
+
 
 if __name__ == "__main__":
     test_garden_management()
