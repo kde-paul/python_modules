@@ -1,26 +1,23 @@
 class GardenError(Exception):
-    def __init__(self, message: str) -> None:
-        super().__init__
-        self.message = message
-
-    def message(self) -> str:
-        return f"Caught a garden error: {self.message}"
+    def __init__(self) -> None:
+        pass
 
 
 class PlantError(GardenError):
-    def __init__(self, message):
-        super().__init__(message)
+    def __init__(self) -> None:
+        pass
 
-    def message(self) -> str:
-        return f"Caught PlantError: {self.message}"
+    def __str__(self) -> str:
+        return "The tomato plant is wilting!"
+
 
 class WaterError(GardenError):
-    def __init__(self, message):
-        super().__init__(message)
-    
-    def message(self) -> str:
-        return f"Caught WaterError: {self.message}"
-    
+    def __init__(self) -> None:
+        pass
+
+    def __str__(self) -> str:
+        return "Not enough water in the tank!"
+
 
 def main() -> None:
     print("=== Custom Garden Errors Demo ===\n")
@@ -29,16 +26,33 @@ def main() -> None:
     try:
         plant_wilting = True
         if plant_wilting:
-            raise PlantError("The tomato plant is wilting!")
-    except PlantError:
-        print(PlantError.message)
+            raise PlantError()
+    except PlantError as error:
+        print("Caught PlantError:", error)
+    print()
     try:
         print("Testing WaterError...")
         tank_full = False
         if not tank_full:
-            raise WaterError("WaterError")
-    except WaterError:
-        print(WaterError("Not enough water in the tank!").message)
+            raise WaterError()
+    except WaterError as error:
+        print("Caught WaterError:", error)
+    print()
+    try:
+        print("Testing catching all garden errors...")
+        garden_error = True
+        if garden_error:
+            raise PlantError()
+    except GardenError as error:
+        print("Caught WaterError:", error)
+    try:
+        garden_error = True
+        if garden_error:
+            raise WaterError()
+    except GardenError as error:
+        print("Caught WaterError:", error)
+
+    print("\nAll custom error types work correctly!")
 
 
 if __name__ == "__main__":
