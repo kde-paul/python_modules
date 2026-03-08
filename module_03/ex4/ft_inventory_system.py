@@ -76,5 +76,3 @@ if __name__ == "__main__":
         if lookup == key:
             key_state = True
     print(f"Sample lookup - '{lookup}' in inventory: {key_state}")
-
-

@@ -10,7 +10,9 @@ def parse(coordinates: str) -> tuple:
         return tuple((p_one, p_two, p_three))
     except ValueError as error:
         print("Error parsing coordinates:", error)
-        print(f"Error details - Type: {type(error).__name__}, Args: {error.args}")
+        print(f"Error details - Type: \
+{type(error).__name__}, Args: {error.args}")
+
 
 def calc_distance(base: tuple, coordinates: tuple) -> float:
     return math.sqrt((coordinates[0] - base[0])**2
